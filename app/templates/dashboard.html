@@ -1,0 +1,44 @@
+<!-- app/templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="sr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FM Drina | Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold">FM Drina – Administracija</h1>
+            <p class="lead text-muted">Izaberite opciju koju želite:</p>
+        </div>
+
+        <div class="row justify-content-center g-4">
+            <div class="col-md-4 text-center">
+                <a href="/filip/ponuda" class="btn btn-primary btn-lg w-100">➕ Nova ponuda</a>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="/filip/ugovor" class="btn btn-warning btn-lg w-100">➕ Novi ugovor</a>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="/filip/dokumenti" class="btn btn-outline-secondary btn-lg w-100">📂 Moji dokumenti</a>
+            </div>
+        </div>
+
+        <hr class="my-5">
+
+        <div>
+            <h3 class="h5 text-secondary">Poslednje aktivnosti:</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">📄 Ponuda #12 – DAŠA NAMEŠTAJ – 10.06.2025.</li>
+                <li class="list-group-item">📄 Ugovor #8 – MANMONT – 29.05.2025.</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>
