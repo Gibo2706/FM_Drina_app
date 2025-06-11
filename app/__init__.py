@@ -11,9 +11,12 @@ def create_app():
 
     from .routes.dashboard import dashboard_bp
     from .routes.ponuda import ponuda_bp
+    from .routes.dokumenta import dokumenti_bp
 
     app.register_blueprint(dashboard_bp, url_prefix="/filip")
     app.register_blueprint(ponuda_bp, url_prefix="/filip/ponuda")
+    app.register_blueprint(dokumenti_bp, url_prefix="/filip/dokumenti")
+
 
     # ✅ Dodaj rutu ovde – UNUTAR funkcije
     @app.route('/ponude/<path:filename>')

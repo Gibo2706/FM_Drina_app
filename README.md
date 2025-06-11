@@ -7,21 +7,21 @@ Cilj je da Filip samostalno, brzo i tačno kreira dokumente koje inače pravi ru
 
 ## 🚀 Funkcionalnosti
 
-- ✅ Generisanje ponuda putem jednostavne web forme
-- ✅ Bootstrap UI/UX – čist, responzivan interfejs
-- ✅ Direktno preuzimanje generisanog .docx fajla
-- ✅ Modularna struktura (ponude, ugovori, dashboard)
-- 🔐 Sigurno čuvanje podataka (tajni u `.env`)
+- ✅ Generisanje ponuda putem web forme
+- ✅ Preuzimanje ponuda u .docx formatu
+- ✅ Prikaz svih generisanih dokumenata
+- ✅ Bootstrap UI za jednostavno korišćenje
+- 🔐 .env fajl za konfiguraciju
 
 ---
 
 ## 🧱 Tehnologije
 
-- [Python 3.9+](https://www.python.org/)
-- [Flask](https://flask.palletsprojects.com/)
-- [Bootstrap 5](https://getbootstrap.com/)
-- [python-dotenv](https://pypi.org/project/python-dotenv/)
-- [docxtpl](https://pypi.org/project/docxtpl/)
+- Python 3.9+
+- Flask
+- Bootstrap 5
+- python-dotenv
+- docxtpl
 
 ---
 
@@ -34,18 +34,20 @@ filip_app/
 │   ├── __init__.py
 │   ├── routes/
 │   │   ├── dashboard.py
-│   │   └── ponuda.py
+│   │   ├── ponuda.py
+│   │   └── dokumenta.py
 │   ├── templates/
 │   │   ├── dashboard.html
 │   │   ├── ponuda_form.html
+│   │   ├── dokumenti.html
 │   │   └── docx_templates/
 │   │       └── ponuda_template.docx
 │   └── utils/
 │       └── doc_generator.py
 │
-├── generated_documents/         # Izlazni .docx fajlovi (NE ide u git)
+├── generated_documents/
 ├── run.py
-├── .env                         # Tajne promenljive
+├── .env
 ├── requirements.txt
 ├── .gitignore
 └── README.md
@@ -57,7 +59,7 @@ filip_app/
 
 ```bash
 python -m venv venv
-.env\Scriptsctivate          # Windows
+.env\Scriptsctivate
 
 pip install -r requirements.txt
 
@@ -66,43 +68,38 @@ $env:FLASK_ENV = "development"
 python -m flask run
 ```
 
-Aplikacija se pokreće na:
-```
-http://localhost:5000/filip
-```
+Aplikacija: [http://localhost:5000/filip](http://localhost:5000/filip)
 
 ---
 
-## ✅ Novo: Preuzimanje generisanog fajla
+## ✅ Dodato
 
-- Kada se generiše ponuda, korisniku se prikazuje link:
-  ```
-  ✅ Ponuda generisana: Preuzmi fajl
-  ```
-- Klikom se direktno preuzima `.docx` fajl iz foldera `generated_documents`
+- `/filip/dokumenti` – prikaz svih fajlova iz `generated_documents`
+- Link za direktno preuzimanje svakog fajla
+- Serviranje fajlova sa `/ponude/<filename>`
 
 ---
 
-## 📌 TODO / razvoj
+## 📌 TODO
 
-- [x] Generisanje `.docx` ponuda
-- [x] Direktno preuzimanje fajla
-- [ ] Prikaz svih dokumenata u interfejsu (moji dokumenti)
-- [ ] Automatski broj ponude (`13/25`, `14/25`...)
-- [ ] Ugovori sa fleksibilnim ulogama
-- [ ] Export PDF
-- [ ] Login (opciono)
+- [x] Generisanje ponuda
+- [x] Preuzimanje fajla
+- [x] Prikaz svih dokumenata
+- [ ] Automatski broj ponude
+- [ ] Generisanje ugovora
+- [ ] PDF export (kasnije)
+- [ ] Autentifikacija (opciono)
 
 ---
 
-## 🧠 Napomena za developera
+## 🧠 Napomena
 
-> Kada god dodaš nove fajlove/foldere:
-- Ažuriraj `.gitignore` ako treba
-- Ažuriraj ovaj `README.md` sa funkcijama i strukturalnim promenama
+Ažuriraj:
+- `.gitignore` ako dodaješ nešto što ne treba da ide u Git
+- `README.md` svaki put kada menjaš strukturu, funkcije ili zavisnosti
 
 ---
 
 ## 📃 Licenca
 
-MIT – koristi slobodno, ali na sopstvenu odgovornost 😄
+MIT
