@@ -7,11 +7,13 @@ Cilj je da Filip samostalno, brzo i tačno kreira dokumente koje inače pravi ru
 
 ## 🚀 Funkcionalnosti
 
-- ✅ Generisanje ponuda putem web forme
-- ✅ Preuzimanje ponuda u .docx formatu
-- ✅ Prikaz svih generisanih dokumenata
-- ✅ Bootstrap UI za jednostavno korišćenje
-- 🔐 .env fajl za konfiguraciju
+- ✅ Generisanje ponuda putem forme
+- ✅ Automatski (ili ručni) unos broja ponude
+- ✅ Generisanje .docx fajlova
+- ✅ Čuvanje metapodataka u .json formatu
+- ✅ Tabela sa pregledom svih dokumenata (klijent, broj, datum)
+- ✅ Direktno preuzimanje .docx fajla
+- 🖨️ PDF dugme (placeholder za kasnije)
 
 ---
 
@@ -29,7 +31,6 @@ Cilj je da Filip samostalno, brzo i tačno kreira dokumente koje inače pravi ru
 
 ```
 filip_app/
-│
 ├── app/
 │   ├── __init__.py
 │   ├── routes/
@@ -43,7 +44,8 @@ filip_app/
 │   │   └── docx_templates/
 │   │       └── ponuda_template.docx
 │   └── utils/
-│       └── doc_generator.py
+│       ├── doc_generator.py
+│       └── doc_counter.py
 │
 ├── generated_documents/
 ├── run.py
@@ -60,7 +62,6 @@ filip_app/
 ```bash
 python -m venv venv
 .env\Scriptsctivate
-
 pip install -r requirements.txt
 
 $env:FLASK_APP = "run.py"
@@ -68,38 +69,42 @@ $env:FLASK_ENV = "development"
 python -m flask run
 ```
 
-Aplikacija: [http://localhost:5000/filip](http://localhost:5000/filip)
+Aplikacija se pokreće na: [http://localhost:5000/filip](http://localhost:5000/filip)
 
 ---
 
-## ✅ Dodato
+## 🧾 Moji dokumenti
 
-- `/filip/dokumenti` – prikaz svih fajlova iz `generated_documents`
-- Link za direktno preuzimanje svakog fajla
-- Serviranje fajlova sa `/ponude/<filename>`
+Tabela prikazuje:
+
+- Broj ponude
+- Klijenta
+- Datum
+- Dugme za DOCX
+- PDF status (uskoro)
 
 ---
 
 ## 📌 TODO
 
-- [x] Generisanje ponuda
-- [x] Preuzimanje fajla
-- [x] Prikaz svih dokumenata
-- [ ] Automatski broj ponude
-- [ ] Generisanje ugovora
-- [ ] PDF export (kasnije)
-- [ ] Autentifikacija (opciono)
+- [x] Automatski broj ponude
+- [x] Pregled svih dokumenata sa metapodacima
+- [ ] PDF export
+- [ ] Filter i pretraga u tabeli
+- [ ] Ugovori
+- [ ] Autentifikacija
 
 ---
 
 ## 🧠 Napomena
 
-Ažuriraj:
-- `.gitignore` ako dodaješ nešto što ne treba da ide u Git
-- `README.md` svaki put kada menjaš strukturu, funkcije ili zavisnosti
+Ažuriraj `.gitignore` i `README.md` svaki put kad:
+- Dodaješ funkcionalnost
+- Meniš strukturu foldera
+- Ubacuješ nove pakete u `requirements.txt`
 
 ---
 
 ## 📃 Licenca
 
-MIT
+MIT – koristi slobodno, uz poštovanje zdravog razuma 😄

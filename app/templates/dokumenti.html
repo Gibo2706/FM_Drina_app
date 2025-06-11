@@ -14,17 +14,32 @@
 
         <a href="/filip" class="btn btn-secondary mb-4">↩️ Nazad na početak</a>
 
-        {% if fajlovi %}
-        <ul class="list-group">
-            {% for fajl in fajlovi %}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{ fajl }}
-                <a href="/ponude/{{ fajl }}" class="btn btn-sm btn-outline-primary" download>⬇️ Preuzmi</a>
-            </li>
-            {% endfor %}
-        </ul>
+        {% if ponude %}
+        <table class="table table-striped bg-white">
+            <thead>
+                <tr>
+                    <th>📄 Broj</th>
+                    <th>👤 Klijent</th>
+                    <th>📅 Datum</th>
+                    <th>⬇️ Preuzmi</th>
+                    <th>🖨️ PDF</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ponuda in ponude %}
+                <tr>
+                    <td>{{ ponuda.broj }}</td>
+                    <td>{{ ponuda.klijent }}</td>
+                    <td>{{ ponuda.datum }}</td>
+                    <td><a href="/ponude/{{ ponuda.fajl }}" class="btn btn-sm btn-outline-primary" download>DOCX</a>
+                    </td>
+                    <td><span class="text-muted">Uskoro</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
         {% else %}
-        <p class="text-muted">Nema generisanih dokumenata.</p>
+        <p class="text-muted">Još uvek nema sačuvanih dokumenata.</p>
         {% endif %}
     </div>
 

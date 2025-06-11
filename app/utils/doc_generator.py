@@ -1,6 +1,10 @@
 from docxtpl import DocxTemplate
 from pathlib import Path
 from datetime import datetime
+import re
+import json
+
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 TEMPLATE_PATH = BASE_DIR / "app" / "templates" / "docx_templates" / "ponuda_template.docx"
@@ -17,4 +21,29 @@ def generisi_ponudu(data: dict) -> str:
     putanja = OUTPUT_DIR / naziv_fajla
 
     doc.save(putanja)
+
+    meta = {
+        "broj": data.get("broj_ponude"),
+        "klijent": data.get("klijent_naziv"),
+        "datum": data.get("datum"),
+        "fajl": naziv_fajla
+    }
+
+    with open(putanja.with_suffix('.json'), "w", encoding="utf-8") as f:
+        json.dump(meta, f, ensure_ascii=False, indent=2)
     return naziv_fajla  # samo ime fajla, ne puna putanja
+
+
+def generisi_broj_ponude():
+    godina = datetime.now().year % 100  # npr. 25 za 2025.
+    folder = Path(__file__).resolve().parent.parent.parent / "generated_documents"
+
+    broj = 1
+    pattern = re.compile(r'Ponuda_.*_(\d{8})\d{6}\.docx')
+
+    for f in folder.glob("Ponuda_*.docx"):
+        match = pattern.match(f.name)
+        if match:
+            broj += 1
+
+    return f"{broj}/{godina}"
