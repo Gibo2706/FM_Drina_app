@@ -33,8 +33,19 @@
         <div>
             <h3 class="h5 text-secondary">Poslednje aktivnosti:</h3>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">📄 Ponuda #12 – DAŠA NAMEŠTAJ – 10.06.2025.</li>
-                <li class="list-group-item">📄 Ugovor #8 – MANMONT – 29.05.2025.</li>
+                {% for d in poslednji %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>
+                        <i class="bi bi-file-earmark-text"></i>
+                        {{ d.tip|capitalize }}{% if d.broj %} #{{ d.broj }}{% endif %} – {{ d.klijent }} – {{ d.datum }}
+                    </span>
+                    <a href="/ponude/{{ d.fajl }}" class="btn btn-sm btn-outline-primary">Preuzmi</a>
+                </li>{% endfor %}
+                {% if not poslednji %}
+                <li class="list-group-item text-muted">
+                    Nema nedavnih aktivnosti.
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>

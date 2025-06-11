@@ -1,5 +1,5 @@
 import os
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, request, Response
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -8,6 +8,19 @@ def create_app():
 
     app = Flask(__name__)
     app.secret_key = os.getenv("SECRET_KEY", "default_key")
+
+    USERNAME = os.getenv("FILIP_USER")
+    PASSWORD = os.getenv("FILIP_PASS")
+
+    @app.before_request
+    def basic_auth():
+        if request.path.startswith("/filip"):
+            auth = request.authorization
+            if not auth or not (auth.username == USERNAME and auth.password == PASSWORD):
+                return Response(
+                    "⛔ Za pristup je potrebna autorizacija", 401,
+                    {"WWW-Authenticate": 'Basic realm="FM Drina Admin"'}
+                )
 
     from .routes.dashboard import dashboard_bp
     from .routes.ponuda import ponuda_bp
