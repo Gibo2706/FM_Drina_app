@@ -1,0 +1,13 @@
+{
+  "opis_radova": "Izvođač se obavezuje da izvrši sledeće radove: [opis radova uneti ovde].",
+  "cena_radova": "Ukupna vrednost radova iznosi [iznos] EUR sa PDV-om.",
+  "nacin_placanja": "Plaćanje se vrši sukcesivno, po ispostavljenim situacijama i u skladu sa dinamikom radova, na osnovu potvrđenih obračuna od strane naručioca. Naručilac je u obavezi da izvrši uplatu u roku od 15 dana.",
+  "obaveze_narucioca": "Naručilac se obavezuje da obezbedi nesmetan pristup gradilištu, potrebnu infrastrukturu i da pravovremeno izvrši obaveze plaćanja prema izvođaču, kako je definisano ovim ugovorom.",
+  "obaveze_izvodjaca": "Izvođač se obavezuje da radove izvrši savesno, stručno i kvalitetno, u skladu sa tehničkom dokumentacijom, važećim zakonima i propisima Republike Srbije.",
+  "dodatne_klauzule": "U slučaju dodatnih ili nepredviđenih radova, izvođač je dužan da zatraži pismenu saglasnost naručioca pre otpočinjanja tih radova.",
+  "nadzor": "Nadzor nad izvođenjem radova vrši naručilac ili ovlašćeno lice. Izvođač je dužan da postupa po instrukcijama nadzora ukoliko su u skladu sa ugovorom.",
+  "kvalitet_materijala": "Svi ugrađeni materijali moraju biti novoproizvedeni, odgovarajućeg kvaliteta i u skladu sa važećim standardima i tehničkim normama u građevinarstvu.",
+  "primopredaja": "Po završetku radova izvršiće se primopredaja uz prisustvo predstavnika obe ugovorne strane. Zapisnik o primopredaji sadržaće eventualne primedbe koje izvođač mora otkloniti u razumnom roku.",
+  "garancija": "Izvođač garantuje za kvalitet izvedenih radova u trajanju od 24 meseca od dana primopredaje. U slučaju utvrđenih nedostataka u garantnom roku, izvođač je dužan da iste otkloni bez dodatne naknade.",
+  "zavrsne_odredbe": "Ovaj ugovor je sačinjen u 2 (dva) istovetna primerka, po jedan za svaku ugovornu stranu. Stupa na snagu danom potpisivanja od strane ovlašćenih predstavnika ugovornih strana."
+}

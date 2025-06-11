@@ -1,19 +1,22 @@
 # 🛠️ FM Drina Admin Panel
 
 Flask aplikacija za generisanje ponuda i ugovora u građevinskoj delatnosti.  
-Cilj je da Filip samostalno, brzo i tačno kreira dokumente koje inače pravi ručno.
+Cilj je da Filip ili neko umesto njega brzo i precizno kreira dokumenta koja se često ponavljaju.
 
 ---
 
 ## 🚀 Funkcionalnosti
 
 - ✅ Generisanje ponuda putem forme
-- ✅ Automatski (ili ručni) unos broja ponude
-- ✅ Generisanje .docx fajlova
-- ✅ Čuvanje metapodataka u .json formatu
-- ✅ Tabela sa pregledom svih dokumenata (klijent, broj, datum)
-- ✅ Direktno preuzimanje .docx fajla
-- 🖨️ PDF dugme (placeholder za kasnije)
+- ✅ Automatski predlog broja ponude
+- ✅ Generisanje ugovora putem forme
+- ✅ Predlozi za svaki član ugovora (editable)
+- ✅ Čuvanje .docx fajlova i .json metapodataka
+- ✅ Promena podrazumevanog teksta svakog člana (klik na 💾)
+- ✅ Prikaz svih dokumenata (ponude i ugovori)
+- ✅ Pretraga u realnom vremenu (klijent, broj, datum)
+- ✅ Export u PDF
+- ✅ Filtriranje po tipu dokumenta
 
 ---
 
@@ -22,8 +25,8 @@ Cilj je da Filip samostalno, brzo i tačno kreira dokumente koje inače pravi ru
 - Python 3.9+
 - Flask
 - Bootstrap 5
-- python-dotenv
 - docxtpl
+- python-dotenv
 
 ---
 
@@ -36,17 +39,21 @@ filip_app/
 │   ├── routes/
 │   │   ├── dashboard.py
 │   │   ├── ponuda.py
+│   │   ├── ugovor.py
 │   │   └── dokumenta.py
 │   ├── templates/
 │   │   ├── dashboard.html
 │   │   ├── ponuda_form.html
+│   │   ├── ugovor_form.html
 │   │   ├── dokumenti.html
 │   │   └── docx_templates/
-│   │       └── ponuda_template.docx
-│   └── utils/
-│       ├── doc_generator.py
-│       └── doc_counter.py
-│
+│   │       ├── ponuda_template.docx
+│   │       └── ugovor_template_full.docx
+│   ├── utils/
+│   │   ├── doc_generator.py
+│   │   └── doc_counter.py
+│   └── defaults/
+│       └── clanovi.json
 ├── generated_documents/
 ├── run.py
 ├── .env
@@ -73,38 +80,15 @@ Aplikacija se pokreće na: [http://localhost:5000/filip](http://localhost:5000/f
 
 ---
 
-## 🧾 Moji dokumenti
-
-Tabela prikazuje:
-
-- Broj ponude
-- Klijenta
-- Datum
-- Dugme za DOCX
-- PDF status (uskoro)
-
----
-
-## 📌 TODO
-
-- [x] Automatski broj ponude
-- [x] Pregled svih dokumenata sa metapodacima
-- [ ] PDF export
-- [ ] Filter i pretraga u tabeli
-- [ ] Ugovori
-- [ ] Autentifikacija
-
----
-
 ## 🧠 Napomena
 
-Ažuriraj `.gitignore` i `README.md` svaki put kad:
-- Dodaješ funkcionalnost
-- Meniš strukturu foldera
-- Ubacuješ nove pakete u `requirements.txt`
+Obavezno ažurirati:
+- `README.md` kada se doda nova funkcionalnost
+- `requirements.txt` kada se doda novi paket
+- `.gitignore` da ne šalješ `.env`, `__pycache__`, i `generated_documents/`
 
 ---
 
 ## 📃 Licenca
 
-MIT – koristi slobodno, uz poštovanje zdravog razuma 😄
+MIT – koristi slobodno uz zdrav razum 😄

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="sr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Novi ugovor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container py-5">
+        <h2 class="mb-4">📑 Novi ugovor</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message|safe }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <form method="post">
+            <h5 class="mb-3">👤 Podaci o ugovornim stranama</h5>
+
+            <div class="mb-3">
+                <label class="form-label">Datum</label>
+                <input type="date" name="datum" class="form-control" required>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Naručilac (naziv)</label>
+                    <input type="text" name="narucilac_naziv" class="form-control" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Izvođač (naziv)</label>
+                    <input type="text" name="izvodjac_naziv" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Adresa naručioca</label>
+                    <input type="text" name="narucilac_adresa" class="form-control" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Adresa izvođača</label>
+                    <input type="text" name="izvodjac_adresa" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">PIB naručioca</label>
+                    <input type="text" name="narucilac_pib" class="form-control" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">MB naručioca</label>
+                    <input type="text" name="narucilac_mb" class="form-control" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">PIB izvođača</label>
+                    <input type="text" name="izvodjac_pib" class="form-control" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">MB izvođača</label>
+                    <input type="text" name="izvodjac_mb" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Povezana ponuda (opciono)</label>
+                <input type="text" name="povezana_ponuda" class="form-control" placeholder="npr. Po ponudi 12/25">
+            </div>
+
+            <hr class="my-4">
+            <h5 class="mb-3">📋 Klauzule ugovora</h5>
+
+            {% for polje in [
+            'opis_radova', 'cena_radova', 'nacin_placanja', 'obaveze_narucioca',
+            'obaveze_izvodjaca', 'dodatne_klauzule', 'nadzor',
+            'kvalitet_materijala', 'primopredaja', 'garancija', 'zavrsne_odredbe'
+            ] %}
+            <div class="mb-4">
+                <label class="form-label">{{ polje.replace('_', ' ').capitalize() }}</label>
+                <textarea name="{{ polje }}" rows="4" class="form-control"
+                    required>{{ default_clauses[polje] }}</textarea>
+                <button type="button" class="btn btn-sm btn-outline-secondary mt-1"
+                    onclick="postaviDefault('{{ polje }}')">💾 Postavi kao podrazumevani</button>
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary">✅ Generiši ugovor</button>
+            <a href="/filip" class="btn btn-secondary">↩️ Nazad</a>
+        </form>
+    </div>
+
+    <script>
+        function postaviDefault(key) {
+            const value = document.querySelector(`[name="${key}"]`).value;
+
+            fetch("/filip/ugovor/update-default", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({ key, text: value })
+            })
+                .then(res => {
+                    if (res.ok) {
+                        alert(`✅ Podrazumevani tekst za ${key} je uspešno sačuvan.`);
+                    } else {
+                        alert("❌ Greška prilikom čuvanja.");
+                    }
+                });
+        }
+    </script>
+
+</body>
+
+</html>
