@@ -1,6 +1,7 @@
 import os
-from flask import Flask
+from flask import Flask, send_from_directory
 from dotenv import load_dotenv
+from pathlib import Path
 
 def create_app():
     load_dotenv()
@@ -13,5 +14,11 @@ def create_app():
 
     app.register_blueprint(dashboard_bp, url_prefix="/filip")
     app.register_blueprint(ponuda_bp, url_prefix="/filip/ponuda")
+
+    # ✅ Dodaj rutu ovde – UNUTAR funkcije
+    @app.route('/ponude/<path:filename>')
+    def preuzmi_ponudu(filename):
+        folder = Path(__file__).resolve().parent.parent / "generated_documents"
+        return send_from_directory(folder, filename, as_attachment=True)
 
     return app

@@ -1,3 +1,4 @@
+<!-- app/templates/ponuda_form.html -->
 <!DOCTYPE html>
 <html lang="sr">
 
@@ -15,35 +16,61 @@
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
         {% for category, message in messages %}
-        <div class="alert alert-{{ category }}">{{ message }}</div>
+        <div class="alert alert-{{ category }}">{% if category == 'success' %}{{ message|safe }}{% else %}{{ message }}{% endif
+            %}</div>
         {% endfor %}
         {% endif %}
         {% endwith %}
 
+
         <form method="post">
+            <h5 class="mb-3">📌 Podaci o klijentu</h5>
+            
             <div class="mb-3">
-                <label for="klijent" class="form-label">Naziv klijenta</label>
-                <input type="text" class="form-control" id="klijent" name="klijent" required>
+                <label class="form-label">Naziv firme</label>
+                <input type="text" name="klijent_naziv" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Adresa</label>
+                <input type="text" name="klijent_adresa" class="form-control" required>
+            </div>
+                <div class="mb-3">
+                    <label class="form-label">Grad</label>
+                    <input type="text" name="klijent_grad" class="form-control" required>
+                    </div>
+                <div class="mb-3">
+                    <label class="form-label">PIB</label>
+                    <input type="text" name="klijent_pib" class="form-control" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Matični broj</label>
+                        <input type="text" name="klijent_mb" class="form-control" required>
+                    </div>
+                    
+                    <hr class="my-4">
+                    
+                    <h5 class="mb-3">📋 Detalji ponude</h5>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Broj ponude</label>
+                        <input type="text" name="broj_ponude" class="form-control" placeholder="npr. 13/25" required>
             </div>
 
             <div class="mb-3">
-                <label for="lokacija" class="form-label">Lokacija objekta</label>
-                <input type="text" class="form-control" id="lokacija" name="lokacija" required>
+                <label class="form-label">Opis ponude (opšti)</label>
+                <input type="text" name="opis_ponude" class="form-control" required>
             </div>
 
             <div class="mb-3">
-                <label for="opis" class="form-label">Opis radova</label>
-                <textarea class="form-control" id="opis" name="opis" rows="4" required></textarea>
+                <label class="form-label">Stavke i cene (pun tekst)</label>
+                <textarea name="stavke_ponude" rows="5" class="form-control" required></textarea>
             </div>
 
             <div class="mb-3">
-                <label for="cena" class="form-label">Cena (po m² ili ukupno)</label>
-                <input type="text" class="form-control" id="cena" name="cena" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="datum" class="form-label">Datum</label>
-                <input type="date" class="form-control" id="datum" name="datum" required>
+                <label class="form-label">Datum</label>
+                <input type="date" name="datum" class="form-control" required>
             </div>
 
             <button type="submit" class="btn btn-primary">✅ Generiši ponudu</button>

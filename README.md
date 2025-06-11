@@ -9,7 +9,7 @@ Cilj je da Filip samostalno, brzo i tačno kreira dokumente koje inače pravi ru
 
 - ✅ Generisanje ponuda putem jednostavne web forme
 - ✅ Bootstrap UI/UX – čist, responzivan interfejs
-- ✅ Pregled prethodnih dokumenata (uskoro)
+- ✅ Direktno preuzimanje generisanog .docx fajla
 - ✅ Modularna struktura (ponude, ugovori, dashboard)
 - 🔐 Sigurno čuvanje podataka (tajni u `.env`)
 
@@ -21,6 +21,7 @@ Cilj je da Filip samostalno, brzo i tačno kreira dokumente koje inače pravi ru
 - [Flask](https://flask.palletsprojects.com/)
 - [Bootstrap 5](https://getbootstrap.com/)
 - [python-dotenv](https://pypi.org/project/python-dotenv/)
+- [docxtpl](https://pypi.org/project/docxtpl/)
 
 ---
 
@@ -29,16 +30,25 @@ Cilj je da Filip samostalno, brzo i tačno kreira dokumente koje inače pravi ru
 ```
 filip_app/
 │
-├── app/                # Glavna Flask aplikacija
+├── app/
 │   ├── __init__.py
-│   ├── routes/         # Modularne rute
-│   └── templates/      # HTML prikazi
+│   ├── routes/
+│   │   ├── dashboard.py
+│   │   └── ponuda.py
+│   ├── templates/
+│   │   ├── dashboard.html
+│   │   ├── ponuda_form.html
+│   │   └── docx_templates/
+│   │       └── ponuda_template.docx
+│   └── utils/
+│       └── doc_generator.py
 │
-├── run.py              # Ulazna tačka (za `flask run`)
-├── .env                # Lokalne tajne (nije u GIT-u)
-├── requirements.txt    # Python zavisnosti
-├── .gitignore          # Ignorisani fajlovi i folderi
-└── README.md           # Ovaj fajl 🙂
+├── generated_documents/         # Izlazni .docx fajlovi (NE ide u git)
+├── run.py
+├── .env                         # Tajne promenljive
+├── requirements.txt
+├── .gitignore
+└── README.md
 ```
 
 ---
@@ -46,41 +56,50 @@ filip_app/
 ## ⚙️ Pokretanje lokalno
 
 ```bash
-# Kreiraj i aktiviraj virtualno okruženje
 python -m venv venv
-.env\Scripts\Activate   # Windows
+.env\Scriptsctivate          # Windows
 
-# Instaliraj zavisnosti
 pip install -r requirements.txt
 
-# Pokreni aplikaciju
 $env:FLASK_APP = "run.py"
 $env:FLASK_ENV = "development"
 python -m flask run
 ```
 
-Aplikacija će biti dostupna na:
+Aplikacija se pokreće na:
 ```
 http://localhost:5000/filip
 ```
 
 ---
 
+## ✅ Novo: Preuzimanje generisanog fajla
+
+- Kada se generiše ponuda, korisniku se prikazuje link:
+  ```
+  ✅ Ponuda generisana: Preuzmi fajl
+  ```
+- Klikom se direktno preuzima `.docx` fajl iz foldera `generated_documents`
+
+---
+
 ## 📌 TODO / razvoj
 
-- [ ] Generisanje `.docx` ponuda
-- [ ] Ugovori sa različitim ulogama (izvođač, naručilac, podizvođač)
-- [ ] Prikaz i filtracija prethodnih dokumenata
+- [x] Generisanje `.docx` ponuda
+- [x] Direktno preuzimanje fajla
+- [ ] Prikaz svih dokumenata u interfejsu (moji dokumenti)
+- [ ] Automatski broj ponude (`13/25`, `14/25`...)
+- [ ] Ugovori sa fleksibilnim ulogama
 - [ ] Export PDF
 - [ ] Login (opciono)
 
 ---
 
-## 🧠 Napomena za developera (tebe)
+## 🧠 Napomena za developera
 
-> Kada god dodaješ nove fajlove/foldere:
-- Ažuriraj `.gitignore` ako treba da ih ignorišeš (npr. `generated_documents/`)
-- Ažuriraj ovaj `README.md` – strukturu, zavisnosti, pokretanje itd.
+> Kada god dodaš nove fajlove/foldere:
+- Ažuriraj `.gitignore` ako treba
+- Ažuriraj ovaj `README.md` sa funkcijama i strukturalnim promenama
 
 ---
 
